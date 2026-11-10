@@ -47,18 +47,5 @@ const MODPACKS = [
     opinion: null,
     videos: [],
     page: null
-  },
-  {
-    name: "All the Mods 9",
-    sort: "2024-06-01",
-    dates: "2024 (fecha aprox.)",
-    logo: "img/atm9.png",
-    difficulty: null,
-    rating: null,
-    result: "pending",
-    resultText: "Por completar",
-    opinion: null,
-    videos: [],
-    page: null
   }
 ];
