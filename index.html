@@ -1,92 +1,107 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="abismo">
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KGSMarie · Modpacks hardcore</title>
+<title>KGSMarie · Modpacks en hardcore</title>
 <meta name="description" content="Modpacks en Hardcore y retos de Minecraft: opinión, dificultad y vídeo de cada modpack.">
 <link rel="icon" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;600&family=Pixelify+Sans:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Pixelify+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--body:"Figtree",system-ui,sans-serif;--display:"Bricolage Grotesque",system-ui,sans-serif;--radius:14px;--bw:1px;--shadow:none}
-/* Estilo 1: Abismo */
-[data-theme=abismo]{--bg:#0b222d;--surface:#11333f;--line:#23505e;--text:#e9f2ef;--muted:#9fbcc0;--accent:#ff5a4e;--accent-ink:#1c0806;--mark:#bfe9e0;--heart:#ff5a4e;--ok:#6fd6a0;--warn:#f2b84b}
-/* Estilo 2: Hélice (colores de tu avatar) */
-[data-theme=helice]{--bg:#f1f7fa;--surface:#fff;--line:#c4d8e3;--text:#14222b;--muted:#4b6574;--accent:#f47b20;--accent-ink:#1d0e02;--mark:#0b6f9c;--heart:#d8412f;--ok:#12794f;--warn:#8f5a00}
-/* Estilo 3: Pixel */
-[data-theme=pixel]{--bg:#2b1d12;--surface:#4a3321;--line:#7a5a3c;--text:#f6eedb;--muted:#d2c1a1;--accent:#5fbf3a;--accent-ink:#0d1f06;--mark:#9be869;--heart:#ff4b3e;--ok:#9be869;--warn:#f2b84b;
-  --display:"Pixelify Sans",monospace;--body:"Pixelify Sans",monospace;--radius:0;--bw:3px;--shadow:4px 4px 0 #120b05}
-
+:root{
+  --bg:#0d0d0d; --surface:#181818; --line:#4a1517; --edge:#2a2a2a;
+  --text:#f4efe8; --muted:#b9afa3;
+  --red:#ff3b3b; --red-dark:#8f1d20; --ink:#150404;
+  --ok:#f4efe8; --brand:"Bricolage Grotesque",system-ui,sans-serif; --pixel:"Pixelify Sans",monospace;
+  --heart:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 7 6'%3E%3Cpath d='M1 0h2v1h1V0h2v1h1v2h-1v1h-1v1h-1v1h-1V5H2V4H1V3H0V1h1z'/%3E%3C/svg%3E");
+}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font:400 1.05rem/1.6 var(--body);-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text);font:400 1.1rem/1.6 var(--pixel);-webkit-font-smoothing:antialiased}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--mark);outline-offset:3px}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
 .wrap{width:min(1000px,100% - 2.5rem);margin-inline:auto}
 
-.nav{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.2rem 0;flex-wrap:wrap}
-.nav strong{font:800 1.25rem var(--display);display:flex;align-items:center;gap:.6rem}
-.nav img{width:36px;height:36px;border-radius:50%}
-[data-theme=pixel] .nav img{border-radius:0}
-.nav label{color:var(--muted);font-size:.95rem}
-select,input[type=search]{background:var(--surface);color:var(--text);border:var(--bw) solid var(--line);
-  border-radius:var(--radius);padding:.55rem .8rem;font:inherit;min-height:44px}
+/* Nombre de marca: tipografía normal, no pixel */
+.brand{font-family:var(--brand);font-weight:800;letter-spacing:-.02em}
+.nav{display:flex;align-items:center;gap:.7rem;padding:1.2rem 0}
+.nav .brand{font-size:1.35rem}
+.nav img{width:36px;height:36px;border:3px solid var(--red)}
 
-.hero{display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;padding:clamp(2.5rem,8vw,5.5rem) 0 clamp(2.5rem,6vw,4rem)}
-.hero h1{font:800 clamp(2.6rem,8vw,5.4rem)/.97 var(--display);letter-spacing:-.03em;max-width:11ch}
-.hero p{max-width:44ch;margin-top:1.4rem;color:var(--muted);font-size:1.2rem}
-.avatar{width:clamp(150px,22vw,240px);aspect-ratio:1;border-radius:50%;border:var(--bw) solid var(--line);box-shadow:var(--shadow);object-fit:cover}
-[data-theme=pixel] .avatar{border-radius:0}
+.hero{display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;padding:clamp(2rem,7vw,4.5rem) 0 clamp(2.5rem,6vw,4rem)}
+.hero h1{font-size:clamp(3.4rem,13vw,8rem);line-height:.9;color:var(--text);text-shadow:6px 6px 0 var(--red-dark)}
+.hero .tag{font:700 clamp(1.4rem,3.5vw,2rem)/1.2 var(--pixel);margin-top:1.4rem;color:var(--red)}
+.hero p{max-width:40ch;margin-top:.8rem;color:var(--muted);font-size:1.2rem}
+.avatar{width:clamp(150px,22vw,240px);aspect-ratio:1;border:4px solid var(--red);box-shadow:8px 8px 0 var(--red-dark);object-fit:cover}
 .cta,.socials{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem}
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.2rem;border-radius:var(--radius);
-  font:600 1rem var(--body);text-decoration:none;border:var(--bw) solid var(--line);background:transparent;color:var(--text);
-  box-shadow:var(--shadow);cursor:pointer;transition:border-color .2s,background .2s}
-.btn:hover{border-color:var(--mark);background:var(--surface)}
-.btn.main{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.btn.main:hover{filter:brightness(1.1)}
-.socials .btn{padding:.45rem .9rem;font-size:.95rem}
-.stats{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:2.5rem;padding-top:1.5rem;border-top:var(--bw) solid var(--line)}
-.stats b{display:block;font:800 2rem var(--display)}
-.stats span{color:var(--muted);font-size:.95rem}
+.socials{margin-top:1rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.1rem;font:500 1.05rem var(--pixel);
+  text-decoration:none;color:var(--text);background:var(--surface);border:3px solid var(--edge);box-shadow:4px 4px 0 #000;
+  transition:transform .1s,box-shadow .1s,border-color .2s}
+.btn:hover{border-color:var(--red)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #000}
+.btn.main{background:var(--red);border-color:var(--red);color:var(--ink);font-weight:700}
+.btn.main:hover{background:#ff5a5a;border-color:#ff5a5a}
+.socials .btn{padding:.35rem .8rem;font-size:.95rem;box-shadow:3px 3px 0 #000}
+.stats{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:2.5rem;padding-top:1.5rem;border-top:3px solid var(--line)}
+.stats b{display:block;font:700 2.4rem/1 var(--pixel);color:var(--red)}
+.stats span{color:var(--muted);font-size:1rem}
 
-h2{font:800 clamp(1.8rem,4vw,2.6rem) var(--display);letter-spacing:-.02em}
+h2{font:700 clamp(1.9rem,4vw,2.6rem)/1.1 var(--pixel)}
 .filters{display:flex;flex-wrap:wrap;gap:.7rem;margin:1.4rem 0 2.6rem}
+select,input[type=search]{background:var(--surface);color:var(--text);border:3px solid var(--edge);padding:.5rem .8rem;font:400 1rem var(--pixel);min-height:46px;border-radius:0}
+select:focus,input[type=search]:focus{border-color:var(--red)}
 .filters input{flex:1 1 220px}
-.timeline{list-style:none;padding:0 0 0 2rem;position:relative}
-.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:0;width:var(--bw);min-width:2px;background:var(--line)}
-.item{position:relative;margin-bottom:2.5rem}
-.item::before{content:"";position:absolute;left:-2rem;top:.35rem;width:16px;height:16px;border-radius:calc(var(--radius) * 9);
-  background:var(--bg);border:3px solid var(--mark)}
-.date{font-weight:600;color:var(--mark);margin-bottom:.8rem}
-.card{display:grid;grid-template-columns:200px 1fr;gap:1.6rem;background:var(--surface);
-  border:var(--bw) solid var(--line);border-radius:var(--radius);padding:1.4rem;box-shadow:var(--shadow)}
-.logo{aspect-ratio:1;border-radius:calc(var(--radius) * .7);background:var(--bg);display:grid;place-items:center;overflow:hidden}
+
+.timeline{list-style:none;padding:0 0 0 2.2rem;position:relative}
+.timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:0;width:4px;background:var(--line)}
+.item{position:relative;margin-bottom:2.6rem}
+.item::before{content:"";position:absolute;left:-2.2rem;top:.3rem;width:20px;height:20px;background:var(--bg);border:4px solid var(--red)}
+.date{font-weight:700;color:var(--red);margin-bottom:.8rem}
+.card{display:grid;grid-template-columns:190px 1fr;gap:1.6rem;background:var(--surface);border:3px solid var(--edge);padding:1.4rem;box-shadow:6px 6px 0 #000}
+.logo{aspect-ratio:1;background:var(--bg);border:3px solid var(--edge);display:grid;place-items:center;overflow:hidden}
 .logo img{width:100%;height:100%;object-fit:contain}
-.ph{padding:1rem;text-align:center;color:var(--muted);font:800 1.1rem var(--display)}
+.ph{padding:1rem;text-align:center;color:var(--muted);font:700 1.1rem var(--pixel)}
 .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem;align-items:start}
-.card h3{font:800 1.7rem/1.1 var(--display)}
-.badge{font-weight:600;font-size:.9rem;padding:.2rem .7rem;border-radius:99px;border:2px solid}
-[data-theme=pixel] .badge{border-radius:0}
-.badge.ok{color:var(--ok)}.badge.dead{color:var(--heart)}.badge.quit{color:var(--warn)}.badge.pending{color:var(--muted)}
-.diff{display:flex;align-items:center;gap:.7rem;margin:.9rem 0;flex-wrap:wrap}
-.diff small{color:var(--muted)}
-.hearts{display:flex;gap:3px}
-.hearts i{width:14px;height:14px;background:var(--line);clip-path:polygon(50% 100%,0 35%,0 12%,22% 0,50% 18%,78% 0,100% 12%,100% 35%)}
-.hearts i.on{background:var(--heart)}
-.opinion{max-width:60ch}
-.opinion.empty{color:var(--muted);font-style:italic}
-.videos{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
-.videos .btn{padding:.5rem 1rem;font-size:.95rem}
+.card h3{font:700 1.7rem/1.1 var(--pixel)}
+.badge{font-size:.95rem;padding:.1rem .6rem;border:3px solid;white-space:nowrap}
+.badge.ok{color:var(--ok);border-color:var(--red);background:var(--red-dark)}
+.badge.dead{color:var(--red);border-color:var(--red)}
+.badge.quit,.badge.pending{color:var(--muted);border-color:var(--edge)}
+
+.diff{display:flex;align-items:center;gap:.8rem;margin:.9rem 0;flex-wrap:wrap}
+.diff small{color:var(--muted);font-size:1rem}
+.hearts{display:flex;gap:4px}
+.hearts i{width:21px;height:18px;background:var(--edge);-webkit-mask:var(--heart) center/contain no-repeat;mask:var(--heart) center/contain no-repeat}
+.hearts i.on{background:var(--red)}
+
+.opinion{max-width:58ch}
+.opinion.empty{color:var(--muted)}
+.note{margin-top:.6rem;color:var(--red);font-weight:500}
+.videos{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem}
+.videos .btn{padding:.4rem .9rem;font-size:1rem}
 .none{color:var(--muted);padding:2rem 0}
-footer{border-top:var(--bw) solid var(--line);margin-top:3rem;padding:2rem 0 3rem;color:var(--muted);font-size:.95rem}
+footer{border-top:3px solid var(--line);margin-top:3rem;padding:2rem 0 3rem;color:var(--muted);font-size:1rem}
+
+
+.note a{text-decoration:underline}
+h2.retos{margin-top:4rem}
+.sub{color:var(--muted);margin:.4rem 0 1.6rem}
+.challenges{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.6rem}
+.chal{background:var(--surface);border:3px solid var(--edge);box-shadow:6px 6px 0 #000;display:flex;flex-direction:column}
+.chal .thumb{aspect-ratio:16/9;background:var(--bg);border-bottom:3px solid var(--edge);display:block}
+.chal .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.chal .body{padding:1.1rem;display:flex;flex-direction:column;gap:1rem;flex:1;justify-content:space-between}
+.chal h3{font:700 1.3rem/1.25 var(--pixel)}
+.chal .btn{align-self:flex-start}
 
 @media (max-width:700px){
   .hero{grid-template-columns:1fr}
   .avatar{order:-1;width:130px}
   .card{grid-template-columns:1fr}
-  .logo{max-width:180px}
+  .logo{max-width:170px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -94,19 +109,14 @@ footer{border-top:var(--bw) solid var(--line);margin-top:3rem;padding:2rem 0 3re
 <body>
 <div class="wrap">
   <header class="nav">
-    <strong><img src="img/avatar.png" alt="">KGSMarie</strong>
-    <label>Estilo
-      <select id="theme" aria-label="Estilo de la web">
-        <option value="abismo">Abismo</option>
-        <option value="helice">Hélice</option>
-        <option value="pixel">Pixel</option>
-      </select>
-    </label>
+    <img src="img/avatar.png" alt="">
+    <span class="brand">KGSMarie</span>
   </header>
 
   <section class="hero">
     <div>
-      <h1>Modpacks en hardcore</h1>
+      <h1 class="brand">KGSMarie</h1>
+      <p class="tag">Modpacks en Hardcore</p>
       <p>¡Bienvenido a tu canal de Minecraft! 🖤 Modpacks en Hardcore y retos de Minecraft 💀</p>
       <div class="cta">
         <a class="btn main" href="https://www.youtube.com/@kgsmarie?sub_confirmation=1" target="_blank" rel="noopener">Suscríbete en YouTube</a>
@@ -132,7 +142,7 @@ footer{border-top:var(--bw) solid var(--line);margin-top:3rem;padding:2rem 0 3re
         <option value="ok">Completados</option>
         <option value="dead">Muertos</option>
         <option value="quit">Abandonados</option>
-        <option value="pending">Por completar</option>
+        <option value="pending">Sin completar</option>
       </select>
       <select id="sort" aria-label="Ordenar">
         <option value="new">Más recientes primero</option>
@@ -145,6 +155,12 @@ footer{border-top:var(--bw) solid var(--line);margin-top:3rem;padding:2rem 0 3re
     <p class="none" id="none" hidden>No hay modpacks con esos filtros.</p>
   </main>
 
+  <section id="retos">
+    <h2 class="retos">Retos</h2>
+    <p class="sub">No son modpacks, pero también van en hardcore.</p>
+    <div class="challenges" id="challenges"></div>
+  </section>
+
   <footer>
     <p>© <span id="year"></span> KGSMarie. Los logos pertenecen a sus respectivos creadores.</p>
   </footer>
@@ -155,20 +171,11 @@ footer{border-top:var(--bw) solid var(--line);margin-top:3rem;padding:2rem 0 3re
 const el = (t, c, h) => { const e = document.createElement(t); if (c) e.className = c; if (h !== undefined) e.textContent = h; return e; };
 const num = v => typeof v === "number";
 
-// Estilo (se recuerda entre visitas)
-const themeSel = document.getElementById("theme");
-try { const t = localStorage.getItem("theme"); if (t) { document.documentElement.dataset.theme = t; themeSel.value = t; } } catch (e) {}
-themeSel.onchange = () => {
-  document.documentElement.dataset.theme = themeSel.value;
-  try { localStorage.setItem("theme", themeSel.value); } catch (e) {}
-};
-
 // Estadísticas
-const diffs = MODPACKS.filter(m => num(m.difficulty));
-const avg = diffs.length ? (diffs.reduce((s, m) => s + m.difficulty, 0) / diffs.length).toFixed(1) + "/10" : "–";
 const stats = document.getElementById("stats");
-[[MODPACKS.length, "modpacks en hardcore"], [MODPACKS.filter(m => m.result === "ok").length, "completados"],
- [MODPACKS.reduce((s, m) => s + m.videos.length, 0), "vídeos enlazados"], [avg, "dificultad media"]].forEach(([n, l]) => {
+[[MODPACKS.length, "modpacks en hardcore"],
+ [MODPACKS.filter(m => m.result === "ok").length, "completados"],
+ [MODPACKS.reduce((s, m) => s + m.videos.length, 0), "vídeos enlazados"]].forEach(([n, l]) => {
   const d = el("div"); d.append(el("b", "", n), el("span", "", l)); stats.append(d);
 });
 
@@ -188,14 +195,24 @@ function card(m) {
   top.append(el("h3", "", m.name), el("span", "badge " + m.result, m.resultText));
   body.append(top);
 
-  if (num(m.difficulty)) {
-    const diff = el("div", "diff"), h = el("div", "hearts");
-    h.setAttribute("role", "img"); h.setAttribute("aria-label", "Dificultad " + m.difficulty + " de 10");
-    for (let i = 1; i <= 10; i++) h.append(el("i", i <= m.difficulty ? "on" : ""));
-    diff.append(h, el("small", "", "Dificultad " + m.difficulty + "/10" + (num(m.rating) ? " · Mi nota " + m.rating + "/10" : "")));
-    body.append(diff);
-  }
+  // Dificultad en corazones (grises si aún no está valorada)
+  const diff = el("div", "diff"), h = el("div", "hearts");
+  const d = num(m.difficulty) ? m.difficulty : 0;
+  h.setAttribute("role", "img");
+  h.setAttribute("aria-label", num(m.difficulty) ? "Dificultad " + d + " de 10" : "Dificultad sin valorar");
+  for (let i = 1; i <= 10; i++) h.append(el("i", i <= d ? "on" : ""));
+  diff.append(h, el("small", "", num(m.difficulty)
+    ? "Dificultad " + d + "/10" + (num(m.rating) ? " · Mi nota " + m.rating + "/10" : "")
+    : "Dificultad por valorar" + (num(m.rating) ? " · Mi nota " + m.rating + "/10" : "")));
+  body.append(diff);
+
   body.append(m.opinion ? el("p", "opinion", m.opinion) : el("p", "opinion empty", "Opinión próximamente."));
+  if (m.note) body.append(el("p", "note", m.note));
+  if (m.collab) {
+    const p = el("p", "note", "Colaboración con ");
+    const a = el("a", "", m.collab.name); a.href = m.collab.url; a.target = "_blank"; a.rel = "noopener";
+    p.append(a); body.append(p);
+  }
 
   const vids = el("div", "videos");
   m.videos.forEach((v, i) => {
@@ -230,6 +247,17 @@ function render() {
 }
 [q, res, sortSel].forEach(e => e.addEventListener("input", render));
 render();
+const chal = document.getElementById("challenges");
+CHALLENGES.forEach(c => {
+  const url = "https://www.youtube.com/watch?v=" + c.id;
+  const card = el("article", "chal");
+  const t = el("a", "thumb"); t.href = url; t.target = "_blank"; t.rel = "noopener"; t.setAttribute("aria-label", "Ver vídeo: " + c.title);
+  const im = new Image(); im.alt = ""; im.loading = "lazy"; im.src = "https://i.ytimg.com/vi/" + c.id + "/hqdefault.jpg";
+  im.onerror = () => im.remove(); t.append(im);
+  const b = el("div", "body"); b.append(el("h3", "", c.title));
+  const a = el("a", "btn main", "▶ Ver vídeo"); a.href = url; a.target = "_blank"; a.rel = "noopener"; b.append(a);
+  card.append(t, b); chal.append(card);
+});
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 </body>
