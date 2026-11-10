@@ -81,7 +81,7 @@ const MODPACKS = [
     result: "ok", resultText: "Completado",
     opinion: null, note: null,
     collab: { name: "@mariepeachx06", url: "https://www.youtube.com/@mariepeachx06" },
-    videos: [{ label: "Vídeo", url: "https://www.youtube.com/watch?v=2mAhexDp-iw" }],
+    videos: [{ label: "100 Días", url: "https://www.youtube.com/watch?v=2mAhexDp-iw" }],
     page: "https://www.curseforge.com/minecraft/modpacks/better-mc-forge-bmc4"
   },
   {
