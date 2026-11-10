@@ -24,11 +24,12 @@ a{color:inherit}
 :focus-visible{outline:3px solid var(--red);outline-offset:3px}
 .wrap{width:min(1000px,100% - 2.5rem);margin-inline:auto}
 
-/* Nombre de marca: tipografía normal, no pixel */
 .brand{font-family:var(--brand);font-weight:800;letter-spacing:-.02em}
-.nav{display:flex;align-items:center;gap:.7rem;padding:1.2rem 0}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 0}
+.nav-left{display:flex;align-items:center;gap:.7rem}
 .nav .brand{font-size:1.35rem}
 .nav img{width:36px;height:36px;border:3px solid var(--red)}
+.sub-counter{font-size:.9rem;color:var(--red);background:var(--surface);border:2px solid var(--edge);padding:.3rem .7rem;font-weight:700}
 
 .hero{display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;padding:clamp(2rem,7vw,4.5rem) 0 clamp(2.5rem,6vw,4rem)}
 .hero h1{font-size:clamp(3.4rem,13vw,8rem);line-height:.9;color:var(--text);text-shadow:6px 6px 0 var(--red-dark)}
@@ -83,9 +84,17 @@ select:focus,input[type=search]:focus{border-color:var(--red)}
 .videos{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem}
 .videos .btn{padding:.4rem .9rem;font-size:1rem}
 .none{color:var(--muted);padding:2rem 0}
+
+.curseforge-mention{background:var(--surface);border:3px solid var(--edge);padding:1.5rem;margin-top:3rem;box-shadow:6px 6px 0 #000;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.curseforge-mention p{color:var(--muted);max-width:60ch}
+
+.faq-section{margin-top:4rem}
+.faq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:1.5rem}
+.faq-card{background:var(--surface);border:3px solid var(--edge);padding:1.2rem;box-shadow:4px 4px 0 #000}
+.faq-card h3{font-size:1.2rem;color:var(--red);margin-bottom:.5rem}
+.faq-card p{color:var(--muted);font-size:1rem}
+
 footer{border-top:3px solid var(--line);margin-top:3rem;padding:2rem 0 3rem;color:var(--muted);font-size:1rem}
-
-
 .note a{text-decoration:underline}
 h2.retos{margin-top:4rem}
 .sub{color:var(--muted);margin:.4rem 0 1.6rem}
@@ -109,8 +118,12 @@ h2.retos{margin-top:4rem}
 <body>
 <div class="wrap">
   <header class="nav">
-    <img src="img/avatar.png" alt="">
-    <span class="brand">KGSMarie</span>
+    <div class="nav-left">
+      <img src="img/avatar.png" alt="">
+      <span class="brand">KGSMarie</span>
+    </div>
+    <!-- Suscriptores actualizados encima del logo / barra superior -->
+    <div class="sub-counter" id="sub-counter">👥 Suscriptores: ¡Creciendo cada día!</div>
   </header>
 
   <section class="hero">
@@ -119,7 +132,7 @@ h2.retos{margin-top:4rem}
       <p class="tag">Modpacks en Hardcore</p>
       <p>¡Bienvenido a tu canal de Minecraft! 🖤 Modpacks en Hardcore y retos de Minecraft 💀</p>
       <div class="cta">
-        <a class="btn main" href="https://www.youtube.com/@kgsmarie?sub_confirmation=1" target="_blank" rel="noopener">Suscríbete en YouTube</a>
+        <a class="btn main" href="https://www.youtube.com/@kgsmarie?sub_confirmation=1" target="_blank" rel="noopener">¡Suscríbete al canal!</a>
         <a class="btn" href="#timeline">Ver modpacks</a>
       </div>
       <div class="socials">
@@ -129,12 +142,21 @@ h2.retos{margin-top:4rem}
         <a class="btn" href="https://discord.gg/jYBVFZWRev" target="_blank" rel="noopener">Discord</a>
       </div>
     </div>
-    <img class="avatar" src="img/avatar.png" alt="Avatar de KGSMarie: personaje con gorro de hélice y capa roja">
+    <img class="avatar" src="img/avatar.png" alt="Avatar de KGSMarie">
     <div class="stats" id="stats"></div>
   </section>
 
+  <!-- Mención a CurseForge -->
+  <div class="curseforge-mention">
+    <div>
+      <h3 style="font: 700 1.3rem var(--pixel); color: var(--red); margin-bottom: .3rem;">¿Dónde descargo los modpacks?</h3>
+      <p>Todos los modpacks de nuestras aventuras en Hardcore se descargan y juegan directamente desde <strong>CurseForge</strong>.</p>
+    </div>
+    <a class="btn main" href="https://www.curseforge.com/" target="_blank" rel="noopener">Visitar CurseForge</a>
+  </div>
+
   <main id="timeline">
-    <h2>Timeline de modpacks</h2>
+    <h2 style="margin-top: 3rem;">Timeline de modpacks</h2>
     <div class="filters">
       <input type="search" id="q" placeholder="Buscar modpack" aria-label="Buscar modpack">
       <select id="res" aria-label="Filtrar por resultado">
@@ -159,6 +181,25 @@ h2.retos{margin-top:4rem}
     <h2 class="retos">Retos</h2>
     <p class="sub">No son modpacks, pero también van en hardcore.</p>
     <div class="challenges" id="challenges"></div>
+  </section>
+
+  <!-- Sección de Preguntas (FAQ) -->
+  <section class="faq-section">
+    <h2>Preguntas frecuentes</h2>
+    <div class="faq-grid">
+      <div class="faq-card">
+        <h3>¿Cómo se calculan las dificultades?</h3>
+        <p>Se basan en la complejidad del modpack, la agresividad de las mobs, mecánicas de supervivencia y supervivencia general en Hardcore del 1 al 10.</p>
+      </div>
+      <div class="faq-card">
+        <h3>¿Puedo sugerir modpacks?</h3>
+        <p>¡Por supuesto! Puedes unirte al servidor de Discord o dejar un comentario en los vídeos de YouTube con tus propuestas.</p>
+      </div>
+      <div class="faq-card">
+        <h3>¿Juegas en solitario o acompañado?</h3>
+        <p>La mayoría de series son en solitario, aunque ocasionalmente realizamos colaboraciones épicas con otros creadores.</p>
+      </div>
+    </div>
   </section>
 
   <footer>
@@ -195,14 +236,15 @@ function card(m) {
   top.append(el("h3", "", m.name), el("span", "badge " + m.result, m.resultText));
   body.append(top);
 
-  // Dificultad en corazones (grises si aún no está valorada)
+  // Dificultad en corazones
   const diff = el("div", "diff"), h = el("div", "hearts");
-  const d = num(m.difficulty) ? m.difficulty : 0;
+  const dVal = num(m.difficulty) ? m.difficulty : 0;
+  const roundedDiff = Math.round(dVal);
   h.setAttribute("role", "img");
-  h.setAttribute("aria-label", num(m.difficulty) ? "Dificultad " + d + " de 10" : "Dificultad sin valorar");
-  for (let i = 1; i <= 10; i++) h.append(el("i", i <= d ? "on" : ""));
+  h.setAttribute("aria-label", num(m.difficulty) ? "Dificultad " + dVal + " de 10" : "Dificultad sin valorar");
+  for (let i = 1; i <= 10; i++) h.append(el("i", i <= roundedDiff ? "on" : ""));
   diff.append(h, el("small", "", num(m.difficulty)
-    ? "Dificultad " + d + "/10" + (num(m.rating) ? " · Mi nota " + m.rating + "/10" : "")
+    ? "Dificultad " + dVal + "/10" + (num(m.rating) ? " · Mi nota " + m.rating + "/10" : "")
     : "Dificultad por valorar" + (num(m.rating) ? " · Mi nota " + m.rating + "/10" : "")));
   body.append(diff);
 
