@@ -1,505 +1,236 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es" data-theme="abismo">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kgsmarie.es — Survival Hardcore & Redstone Technical Minecraft</title>
-    <meta name="description" content="Sitio oficial de kgsmarie. Descubre mis proyectos de Redstone, megaconstrucciones en Hardcore, directos y redes sociales.">
-    <meta name="theme-color" content="#0d1117">
-    
-    <!-- Open Graph / Favicon -->
-    <link rel="icon" type="image/png" href="https://mc-heads.net/avatar/kgsmarie/64">
-    <meta property="og:title" content="kgsmarie.es — Minecraft Technical & Hardcore">
-    <meta property="og:description" content="Sigue mis avances, granjas técnicas de Redstone y megaconstrucciones en Minecraft Survival Hardcore.">
-    <meta property="og:image" content="https://mc-heads.net/body/kgsmarie/right">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KGSMarie · Modpacks en hardcore</title>
+<meta name="description" content="Modpacks en Hardcore y retos de Minecraft: opinión, dificultad y vídeo de cada modpack.">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;600&family=Pixelify+Sans:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--body:"Figtree",system-ui,sans-serif;--display:"Bricolage Grotesque",system-ui,sans-serif;--radius:14px;--bw:1px;--shadow:none}
+/* Estilo 1: Abismo */
+[data-theme=abismo]{--bg:#0b222d;--surface:#11333f;--line:#23505e;--text:#e9f2ef;--muted:#9fbcc0;--accent:#ff5a4e;--accent-ink:#1c0806;--mark:#bfe9e0;--heart:#ff5a4e;--ok:#6fd6a0;--warn:#f2b84b}
+/* Estilo 2: Hélice (colores de tu avatar) */
+[data-theme=helice]{--bg:#f1f7fa;--surface:#fff;--line:#c4d8e3;--text:#14222b;--muted:#4b6574;--accent:#f47b20;--accent-ink:#1d0e02;--mark:#0b6f9c;--heart:#d8412f;--ok:#12794f;--warn:#8f5a00}
+/* Estilo 3: Pixel */
+[data-theme=pixel]{--bg:#2b1d12;--surface:#4a3321;--line:#7a5a3c;--text:#f6eedb;--muted:#d2c1a1;--accent:#5fbf3a;--accent-ink:#0d1f06;--mark:#9be869;--heart:#ff4b3e;--ok:#9be869;--warn:#f2b84b;
+  --display:"Pixelify Sans",monospace;--body:"Pixelify Sans",monospace;--radius:0;--bw:3px;--shadow:4px 4px 0 #120b05}
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts & Font Awesome Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@300;400;600;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:400 1.05rem/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--mark);outline-offset:3px}
+.wrap{width:min(1000px,100% - 2.5rem);margin-inline:auto}
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        mc: {
-                            bg: '#0a0d14',
-                            card: '#121722',
-                            border: '#1f293d',
-                            emerald: '#10b981',
-                            gold: '#f59e0b',
-                            redstone: '#ef4444',
-                            diamond: '#06b6d4',
-                            text: '#f3f4f6',
-                            muted: '#9ca3af'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace'],
-                        pixel: ['"Press Start 2P"', 'cursive']
-                    }
-                }
-            }
-        }
-    </script>
+.nav{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.2rem 0;flex-wrap:wrap}
+.nav strong{font:800 1.25rem var(--display);display:flex;align-items:center;gap:.6rem}
+.nav img{width:36px;height:36px;border-radius:50%}
+[data-theme=pixel] .nav img{border-radius:0}
+.nav label{color:var(--muted);font-size:.95rem}
+select,input[type=search]{background:var(--surface);color:var(--text);border:var(--bw) solid var(--line);
+  border-radius:var(--radius);padding:.55rem .8rem;font:inherit;min-height:44px}
 
-    <style>
-        body {
-            background-color: #0a0d14;
-            color: #f3f4f6;
-            background-image: 
-                radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 85% 85%, rgba(6, 182, 212, 0.05) 0%, transparent 40%);
-            background-attachment: fixed;
-        }
+.hero{display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;padding:clamp(2.5rem,8vw,5.5rem) 0 clamp(2.5rem,6vw,4rem)}
+.hero h1{font:800 clamp(2.6rem,8vw,5.4rem)/.97 var(--display);letter-spacing:-.03em;max-width:11ch}
+.hero p{max-width:44ch;margin-top:1.4rem;color:var(--muted);font-size:1.2rem}
+.avatar{width:clamp(150px,22vw,240px);aspect-ratio:1;border-radius:50%;border:var(--bw) solid var(--line);box-shadow:var(--shadow);object-fit:cover}
+[data-theme=pixel] .avatar{border-radius:0}
+.cta,.socials{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.2rem;border-radius:var(--radius);
+  font:600 1rem var(--body);text-decoration:none;border:var(--bw) solid var(--line);background:transparent;color:var(--text);
+  box-shadow:var(--shadow);cursor:pointer;transition:border-color .2s,background .2s}
+.btn:hover{border-color:var(--mark);background:var(--surface)}
+.btn.main{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.main:hover{filter:brightness(1.1)}
+.socials .btn{padding:.45rem .9rem;font-size:.95rem}
+.stats{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:2.5rem;padding-top:1.5rem;border-top:var(--bw) solid var(--line)}
+.stats b{display:block;font:800 2rem var(--display)}
+.stats span{color:var(--muted);font-size:.95rem}
 
-        .glass-panel {
-            background: rgba(18, 23, 34, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(31, 41, 61, 0.8);
-        }
+h2{font:800 clamp(1.8rem,4vw,2.6rem) var(--display);letter-spacing:-.02em}
+.filters{display:flex;flex-wrap:wrap;gap:.7rem;margin:1.4rem 0 2.6rem}
+.filters input{flex:1 1 220px}
+.timeline{list-style:none;padding:0 0 0 2rem;position:relative}
+.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:0;width:var(--bw);min-width:2px;background:var(--line)}
+.item{position:relative;margin-bottom:2.5rem}
+.item::before{content:"";position:absolute;left:-2rem;top:.35rem;width:16px;height:16px;border-radius:calc(var(--radius) * 9);
+  background:var(--bg);border:3px solid var(--mark)}
+.date{font-weight:600;color:var(--mark);margin-bottom:.8rem}
+.card{display:grid;grid-template-columns:200px 1fr;gap:1.6rem;background:var(--surface);
+  border:var(--bw) solid var(--line);border-radius:var(--radius);padding:1.4rem;box-shadow:var(--shadow)}
+.logo{aspect-ratio:1;border-radius:calc(var(--radius) * .7);background:var(--bg);display:grid;place-items:center;overflow:hidden}
+.logo img{width:100%;height:100%;object-fit:contain}
+.ph{padding:1rem;text-align:center;color:var(--muted);font:800 1.1rem var(--display)}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem;align-items:start}
+.card h3{font:800 1.7rem/1.1 var(--display)}
+.badge{font-weight:600;font-size:.9rem;padding:.2rem .7rem;border-radius:99px;border:2px solid}
+[data-theme=pixel] .badge{border-radius:0}
+.badge.ok{color:var(--ok)}.badge.dead{color:var(--heart)}.badge.quit{color:var(--warn)}.badge.pending{color:var(--muted)}
+.diff{display:flex;align-items:center;gap:.7rem;margin:.9rem 0;flex-wrap:wrap}
+.diff small{color:var(--muted)}
+.hearts{display:flex;gap:3px}
+.hearts i{width:14px;height:14px;background:var(--line);clip-path:polygon(50% 100%,0 35%,0 12%,22% 0,50% 18%,78% 0,100% 12%,100% 35%)}
+.hearts i.on{background:var(--heart)}
+.opinion{max-width:60ch}
+.opinion.empty{color:var(--muted);font-style:italic}
+.videos{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+.videos .btn{padding:.5rem 1rem;font-size:.95rem}
+.none{color:var(--muted);padding:2rem 0}
+footer{border-top:var(--bw) solid var(--line);margin-top:3rem;padding:2rem 0 3rem;color:var(--muted);font-size:.95rem}
 
-        .glass-panel:hover {
-            border-color: rgba(16, 185, 129, 0.4);
-            box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.15);
-        }
-
-        .mc-btn-primary {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            transition: all 0.2s ease;
-        }
-
-        .mc-btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
-        }
-
-        .glow-emerald {
-            filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.3));
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0a0d14;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1f293d;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #10b981;
-        }
-    </style>
+@media (max-width:700px){
+  .hero{grid-template-columns:1fr}
+  .avatar{order:-1;width:130px}
+  .card{grid-template-columns:1fr}
+  .logo{max-width:180px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
 </head>
-<body class="font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-black">
+<body>
+<div class="wrap">
+  <header class="nav">
+    <strong><img src="img/avatar.png" alt="">KGSMarie</strong>
+    <label>Estilo
+      <select id="theme" aria-label="Estilo de la web">
+        <option value="abismo">Abismo</option>
+        <option value="helice">Hélice</option>
+        <option value="pixel">Pixel</option>
+      </select>
+    </label>
+  </header>
 
-    <!-- NAVBAR -->
-    <header class="sticky top-0 z-40 w-full glass-panel border-b border-mc-border/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Brand / Logo -->
-                <a href="#" class="flex items-center gap-3 group">
-                    <img id="nav-avatar" src="https://mc-heads.net/avatar/kgsmarie/40" alt="kgsmarie skin" class="w-10 h-10 rounded-lg border border-mc-emerald/40 group-hover:scale-105 transition-transform">
-                    <div>
-                        <span class="font-mono font-bold text-lg text-white tracking-wider group-hover:text-mc-emerald transition-colors">kgsmarie<span class="text-mc-emerald">.es</span></span>
-                        <div class="flex items-center gap-1.5 text-xs text-mc-muted">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span>Online Hardcore World</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Navigation Links -->
-                <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-                    <a href="#proyectos" class="text-mc-muted hover:text-mc-emerald transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-cubes text-xs"></i> Proyectos
-                    </a>
-                    <a href="#redes" class="text-mc-muted hover:text-mc-emerald transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-share-nodes text-xs"></i> Redes Sociales
-                    </a>
-                    <a href="#setup" class="text-mc-muted hover:text-mc-emerald transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-microchip text-xs"></i> Setup & Mods
-                    </a>
-                    <a href="#stats" class="text-mc-muted hover:text-mc-emerald transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-chart-simple text-xs"></i> Estadísticas
-                    </a>
-                </nav>
-
-                <!-- Actions -->
-                <div class="flex items-center gap-3">
-                    <a href="https://twitch.tv" target="_blank" rel="noopener" class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-purple-600/20 text-purple-400 border border-purple-500/30 text-xs font-semibold hover:bg-purple-600 hover:text-white transition-all">
-                        <i class="fa-brands fa-twitch"></i>
-                        <span class="hidden sm:inline">Twitch</span>
-                    </a>
-                    <button onclick="toggleJukebox()" class="p-2.5 rounded-lg bg-mc-card border border-mc-border hover:border-mc-emerald text-mc-emerald transition-colors" title="Reproductor de música">
-                        <i class="fa-solid fa-compact-disc animate-spin-slow"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- HERO SECTION -->
-    <section class="relative pt-12 pb-20 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
-                <!-- Hero Left Column -->
-                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-medium">
-                        <i class="fa-solid fa-heart-pulse text-red-500"></i> Minecraft Hardcore Season 3
-                    </div>
-                    
-                    <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-none">
-                        Técnica, Redstone & <br>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">Megaconstrucciones</span>
-                    </h1>
-
-                    <p class="text-base sm:text-lg text-mc-muted leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                        Bienvenido a mi espacio oficial. Aquí recopilo mis granjas de alto rendimiento, proyectos técnicos de Redstone y los avances diarios de mi mundo Survival Hardcore.
-                    </p>
-
-                    <!-- Quick Action Buttons -->
-                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
-                        <a href="#proyectos" class="mc-btn-primary px-6 py-3.5 rounded-xl text-black font-bold text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-compass"></i> Explorar Proyectos
-                        </a>
-                        <a href="https://discord.gg" target="_blank" rel="noopener" class="px-6 py-3.5 rounded-xl glass-panel text-white font-semibold text-sm hover:border-indigo-500 hover:text-indigo-400 transition-all flex items-center gap-2">
-                            <i class="fa-brands fa-discord"></i> Unirse a la Comunidad
-                        </a>
-                    </div>
-
-                    <!-- Live Quick Stats -->
-                    <div class="pt-6 grid grid-cols-3 gap-4 border-t border-mc-border/60 max-w-md mx-auto lg:mx-0">
-                        <div>
-                            <span class="block text-xl font-bold font-mono text-white">1,420+</span>
-                            <span class="text-xs text-mc-muted">Días Hardcore</span>
-                        </div>
-                        <div>
-                            <span class="block text-xl font-bold font-mono text-emerald-400">12.5M</span>
-                            <span class="text-xs text-mc-muted">Bloques Picados</span>
-                        </div>
-                        <div>
-                            <span class="block text-xl font-bold font-mono text-cyan-400">45+</span>
-                            <span class="text-xs text-mc-muted">Granjas Activas</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hero Right Column: Interactive Skin Render Card -->
-                <div class="lg:col-span-5 flex justify-center">
-                    <div class="relative w-full max-w-sm glass-panel rounded-2xl p-6 text-center border border-mc-border group">
-                        <!-- Skin Display Mode Selector -->
-                        <div class="absolute top-4 right-4 flex gap-1 bg-black/40 p-1 rounded-lg border border-mc-border">
-                            <button onclick="changeSkinView('body')" class="px-2 py-1 text-xs rounded text-mc-emerald hover:bg-mc-border font-mono">3D</button>
-                            <button onclick="changeSkinView('bust')" class="px-2 py-1 text-xs rounded text-mc-muted hover:bg-mc-border font-mono">Busto</button>
-                        </div>
-
-                        <div class="py-6 flex justify-center">
-                            <img id="skin-render" src="https://mc-heads.net/body/kgsmarie/right" alt="kgsmarie 3D skin" class="h-64 object-contain filter drop-shadow-[0_10px_20px_rgba(16,185,129,0.2)] transition-transform duration-300 group-hover:scale-105">
-                        </div>
-
-                        <div class="space-y-2">
-                            <h3 class="text-lg font-bold font-mono text-white">kgsmarie</h3>
-                            <p class="text-xs text-mc-muted">Jugadora & Creadora de Contenido</p>
-                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-mc-border/50 text-xs font-mono text-mc-gold">
-                                <i class="fa-solid fa-crown text-amber-400"></i> Nick: kgsmarie
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- PROYECTOS CATEGORIZADOS Y FILTRABLES -->
-    <section id="proyectos" class="py-16 border-t border-mc-border/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
-                <div>
-                    <h2 class="text-2xl sm:text-3xl font-black text-white font-mono flex items-center gap-3">
-                        <i class="fa-solid fa-gears text-mc-emerald"></i> Proyectos & Granjas
-                    </h2>
-                    <p class="text-sm text-mc-muted mt-1">Explora mis construcciones técnicas, diseños de Redstone y proyectos en curso.</p>
-                </div>
-
-                <!-- Filters -->
-                <div class="flex flex-wrap gap-2">
-                    <button onclick="filterProjects('all')" class="filter-btn active px-4 py-2 rounded-lg text-xs font-mono font-semibold bg-mc-emerald text-black transition-all">Todos</button>
-                    <button onclick="filterProjects('redstone')" class="filter-btn px-4 py-2 rounded-lg text-xs font-mono font-semibold glass-panel text-mc-muted hover:text-white transition-all">Técnico / Redstone</button>
-                    <button onclick="filterProjects('builds')" class="filter-btn px-4 py-2 rounded-lg text-xs font-mono font-semibold glass-panel text-mc-muted hover:text-white transition-all">Megaconstrucciones</button>
-                    <button onclick="filterProjects('hardcore')" class="filter-btn px-4 py-2 rounded-lg text-xs font-mono font-semibold glass-panel text-mc-muted hover:text-white transition-all">Hardcore World</button>
-                </div>
-            </div>
-
-            <!-- Projects Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-container">
-                
-                <!-- Card 1 -->
-                <div class="project-card redstone glass-panel rounded-xl overflow-hidden group">
-                    <div class="h-48 bg-gradient-to-br from-red-900/40 via-mc-card to-mc-bg relative p-4 flex flex-col justify-between">
-                        <div class="flex justify-between items-center">
-                            <span class="px-2.5 py-1 rounded bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] font-mono font-bold">REDSTONE TÉCNICA</span>
-                            <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-mono"><i class="fa-solid fa-check"></i> Finalizado</span>
-                        </div>
-                        <i class="fa-solid fa-atom text-6xl text-red-500/20 absolute right-4 bottom-4 group-hover:scale-110 transition-transform"></i>
-                    </div>
-                    <div class="p-5 space-y-3">
-                        <h3 class="font-bold text-white text-lg font-mono">Perimetrador de Brujas 120k/h</h3>
-                        <p class="text-xs text-mc-muted leading-relaxed">
-                            Granja perimetrada en slime chunks con recolector de ítems Shulker automático y clasificación inteligente de pórmoras.
-                        </p>
-                        <div class="pt-3 border-t border-mc-border flex justify-between items-center text-xs text-mc-muted font-mono">
-                            <span><i class="fa-regular fa-clock"></i> 85h de trabajo</span>
-                            <button onclick="openModal('Perimetrador de Brujas', 'Detalles completos de la granja técnica de brujas con perímetro de 257x257 bloques vaciado mediante TNT Duplicators.')" class="text-mc-emerald hover:underline">Saber más &rarr;</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="project-card builds glass-panel rounded-xl overflow-hidden group">
-                    <div class="h-48 bg-gradient-to-br from-amber-900/40 via-mc-card to-mc-bg relative p-4 flex flex-col justify-between">
-                        <div class="flex justify-between items-center">
-                            <span class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] font-mono font-bold">MEGACONSTRUCCIÓN</span>
-                            <span class="px-2.5 py-1 rounded bg-cyan-500/20 text-cyan-400 text-[10px] font-mono"><i class="fa-solid fa-spinner animate-spin"></i> En desarrollo (80%)</span>
-                        </div>
-                        <i class="fa-solid fa-castle text-6xl text-amber-500/20 absolute right-4 bottom-4 group-hover:scale-110 transition-transform"></i>
-                    </div>
-                    <div class="p-5 space-y-3">
-                        <h3 class="font-bold text-white text-lg font-mono">Catedral Netherita de la End</h3>
-                        <p class="text-xs text-mc-muted leading-relaxed">
-                            Transformación completa de la isla central del End inspirada en la arquitectura gótica espacial utilizando Pizarra Profunda y Vidrio Tintado.
-                        </p>
-                        <div class="pt-3 border-t border-mc-border flex justify-between items-center text-xs text-mc-muted font-mono">
-                            <span><i class="fa-regular fa-clock"></i> 140h de trabajo</span>
-                            <button onclick="openModal('Catedral Netherita de la End', 'Proyecto monumental en el End. Incluye vaciado completo de la isla principal y sustitución por una estructura neogótica de más de 450.000 bloques.')" class="text-mc-emerald hover:underline">Saber más &rarr;</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="project-card hardcore glass-panel rounded-xl overflow-hidden group">
-                    <div class="h-48 bg-gradient-to-br from-emerald-900/40 via-mc-card to-mc-bg relative p-4 flex flex-col justify-between">
-                        <div class="flex justify-between items-center">
-                            <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-bold">HARDCORE WORLD</span>
-                            <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-mono"><i class="fa-solid fa-check"></i> Finalizado</span>
-                        </div>
-                        <i class="fa-solid fa-warehouse text-6xl text-emerald-500/20 absolute right-4 bottom-4 group-hover:scale-110 transition-transform"></i>
-                    </div>
-                    <div class="p-5 space-y-3">
-                        <h3 class="font-bold text-white text-lg font-mono">Super Storage Central 800+ cofres</h3>
-                        <p class="text-xs text-mc-muted leading-relaxed">
-                            Almacén central ordenado por tecnología Multi-Item Sorter (MIS v4) con capacidad de clasificación automática instantánea.
-                        </p>
-                        <div class="pt-3 border-t border-mc-border flex justify-between items-center text-xs text-mc-muted font-mono">
-                            <span><i class="fa-regular fa-clock"></i> 60h de trabajo</span>
-                            <button onclick="openModal('Super Storage Central', 'Almacén principal automatizado con filtros de items no apilables, sistema de llamada por vagoneta y luces indicadoras de stock.')" class="text-mc-emerald hover:underline">Saber más &rarr;</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- REDES SOCIALES GRID -->
-    <section id="redes" class="py-16 bg-mc-card/30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-xl mx-auto mb-10">
-                <h2 class="text-2xl sm:text-3xl font-black text-white font-mono">Comunidad & Directos</h2>
-                <p class="text-sm text-mc-muted mt-2">Sígueme en mis redes para no perderte ningún episodio o stream en directo.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- Twitch Card -->
-                <a href="https://twitch.tv" target="_blank" rel="noopener" class="glass-panel p-6 rounded-xl hover:border-purple-500 transition-all flex items-center gap-4 group">
-                    <div class="w-12 h-12 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl group-hover:scale-110 transition-transform">
-                        <i class="fa-brands fa-twitch"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-white font-mono text-sm">Twitch</h4>
-                        <p class="text-xs text-mc-muted">Directos de Minecraft</p>
-                    </div>
-                </a>
-
-                <!-- YouTube Card -->
-                <a href="https://youtube.com" target="_blank" rel="noopener" class="glass-panel p-6 rounded-xl hover:border-red-500 transition-all flex items-center gap-4 group">
-                    <div class="w-12 h-12 rounded-lg bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 text-2xl group-hover:scale-110 transition-transform">
-                        <i class="fa-brands fa-youtube"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-white font-mono text-sm">YouTube</h4>
-                        <p class="text-xs text-mc-muted">Episodios & Tutoriales</p>
-                    </div>
-                </a>
-
-                <!-- Discord Card -->
-                <a href="https://discord.gg" target="_blank" rel="noopener" class="glass-panel p-6 rounded-xl hover:border-indigo-500 transition-all flex items-center gap-4 group">
-                    <div class="w-12 h-12 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-2xl group-hover:scale-110 transition-transform">
-                        <i class="fa-brands fa-discord"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-white font-mono text-sm">Discord</h4>
-                        <p class="text-xs text-mc-muted">Servidor de la Comunidad</p>
-                    </div>
-                </a>
-
-                <!-- TikTok Card -->
-                <a href="https://tiktok.com" target="_blank" rel="noopener" class="glass-panel p-6 rounded-xl hover:border-cyan-500 transition-all flex items-center gap-4 group">
-                    <div class="w-12 h-12 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-2xl group-hover:scale-110 transition-transform">
-                        <i class="fa-brands fa-tiktok"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-white font-mono text-sm">TikTok</h4>
-                        <p class="text-xs text-mc-muted">Clips & Shorts</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- SETUP & MODS SECTION -->
-    <section id="setup" class="py-16 border-t border-mc-border/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                
-                <!-- Mods Preferidos -->
-                <div class="glass-panel rounded-2xl p-6 space-y-4">
-                    <h3 class="text-xl font-bold text-white font-mono flex items-center gap-2">
-                        <i class="fa-solid fa-puzzle-piece text-mc-emerald"></i> Mods & Optimización
-                    </h3>
-                    <p class="text-xs text-mc-muted">Lista de cliente utilizada para optimización de rendimiento y ayuda técnica visual.</p>
-                    
-                    <ul class="space-y-3 pt-2 text-xs font-mono">
-                        <li class="flex justify-between items-center p-3 rounded-lg bg-mc-card border border-mc-border">
-                            <span class="text-white font-semibold"><i class="fa-solid fa-bolt text-amber-400 mr-2"></i> Fabric + Sodium + Lithium</span>
-                            <span class="text-mc-muted">Rendimiento base</span>
-                        </li>
-                        <li class="flex justify-between items-center p-3 rounded-lg bg-mc-card border border-mc-border">
-                            <span class="text-white font-semibold"><i class="fa-solid fa-layer-group text-cyan-400 mr-2"></i> Litematica + Masa Mods</span>
-                            <span class="text-mc-muted">Proyección de esquemáticos</span>
-                        </li>
-                        <li class="flex justify-between items-center p-3 rounded-lg bg-mc-card border border-mc-border">
-                            <span class="text-white font-semibold"><i class="fa-solid fa-eye text-emerald-400 mr-2"></i> MiniHUD & Freecam</span>
-                            <span class="text-mc-muted">Métricas & Cámaras</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Shaders & Resource Pack -->
-                <div class="glass-panel rounded-2xl p-6 space-y-4">
-                    <h3 class="text-xl font-bold text-white font-mono flex items-center gap-2">
-                        <i class="fa-solid fa-wand-magic-sparkles text-cyan-400"></i> Gráficos & Texturas
-                    </h3>
-                    <p class="text-xs text-mc-muted">Configuración estética para directos y capturas en alta calidad.</p>
-                    
-                    <ul class="space-y-3 pt-2 text-xs font-mono">
-                        <li class="flex justify-between items-center p-3 rounded-lg bg-mc-card border border-mc-border">
-                            <span class="text-white font-semibold"><i class="fa-solid fa-sun text-amber-400 mr-2"></i> Complementary Reimagined Shaders</span>
-                            <span class="text-mc-muted">Iluminación realista</span>
-                        </li>
-                        <li class="flex justify-between items-center p-3 rounded-lg bg-mc-card border border-mc-border">
-                            <span class="text-white font-semibold"><i class="fa-solid fa-cubes text-emerald-400 mr-2"></i> Vanilla Tweaks Pack</span>
-                            <span class="text-mc-muted">Mejoras de interfaz</span>
-                        </li>
-                        <li class="flex justify-between items-center p-3 rounded-lg bg-mc-card border border-mc-border">
-                            <span class="text-white font-semibold"><i class="fa-solid fa-font text-purple-400 mr-2"></i> Font Custom Minecraft</span>
-                            <span class="text-mc-muted">Tipografía pixel</span>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="py-8 border-t border-mc-border/80 glass-panel mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-mc-muted">
-            <div class="flex items-center gap-2 font-mono">
-                <span class="text-white font-bold">kgsmarie.es</span>
-                <span>— No afiliado oficialmente con Mojang Studios o Microsoft.</span>
-            </div>
-            <div class="flex items-center gap-4">
-                <span>Alojado gratis en <strong class="text-white">GitHub / Vercel</strong></span>
-                <a href="#top" class="text-mc-emerald hover:underline font-mono">Volver arriba &uarr;</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- MODAL INFORMATIVO -->
-    <div id="project-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-panel max-w-lg w-full rounded-2xl p-6 border border-mc-border space-y-4">
-            <div class="flex justify-between items-center">
-                <h3 id="modal-title" class="text-xl font-bold font-mono text-white"></h3>
-                <button onclick="closeModal()" class="text-mc-muted hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-            </div>
-            <p id="modal-desc" class="text-sm text-mc-muted leading-relaxed"></p>
-            <div class="pt-4 flex justify-end">
-                <button onclick="closeModal()" class="mc-btn-primary px-4 py-2 rounded-lg text-xs font-bold text-black">Cerrar</button>
-            </div>
-        </div>
+  <section class="hero">
+    <div>
+      <h1>Modpacks en hardcore</h1>
+      <p>¡Bienvenido a tu canal de Minecraft! 🖤 Modpacks en Hardcore y retos de Minecraft 💀</p>
+      <div class="cta">
+        <a class="btn main" href="https://www.youtube.com/@kgsmarie?sub_confirmation=1" target="_blank" rel="noopener">Suscríbete en YouTube</a>
+        <a class="btn" href="#timeline">Ver modpacks</a>
+      </div>
+      <div class="socials">
+        <a class="btn" href="https://www.twitch.tv/kgsmarie" target="_blank" rel="noopener">Twitch</a>
+        <a class="btn" href="https://www.instagram.com/kgsmarie/" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn" href="https://www.tiktok.com/@kgsmarie" target="_blank" rel="noopener">TikTok</a>
+        <a class="btn" href="https://discord.gg/jYBVFZWRev" target="_blank" rel="noopener">Discord</a>
+      </div>
     </div>
+    <img class="avatar" src="img/avatar.png" alt="Avatar de KGSMarie: personaje con gorro de hélice y capa roja">
+    <div class="stats" id="stats"></div>
+  </section>
 
-    <!-- JAVASCRIPT CONTROLS -->
-    <script>
-        // Cambiar vista del avatar 3D
-        function changeSkinView(view) {
-            const img = document.getElementById('skin-render');
-            if (view === 'body') {
-                img.src = 'https://mc-heads.net/body/kgsmarie/right';
-            } else {
-                img.src = 'https://mc-heads.net/bust/kgsmarie';
-            }
-        }
+  <main id="timeline">
+    <h2>Timeline de modpacks</h2>
+    <div class="filters">
+      <input type="search" id="q" placeholder="Buscar modpack" aria-label="Buscar modpack">
+      <select id="res" aria-label="Filtrar por resultado">
+        <option value="">Todos los resultados</option>
+        <option value="ok">Completados</option>
+        <option value="dead">Muertos</option>
+        <option value="quit">Abandonados</option>
+        <option value="pending">Por completar</option>
+      </select>
+      <select id="sort" aria-label="Ordenar">
+        <option value="new">Más recientes primero</option>
+        <option value="old">Más antiguos primero</option>
+        <option value="diff">Más difíciles primero</option>
+        <option value="rate">Mejor nota primero</option>
+      </select>
+    </div>
+    <ol class="timeline" id="list"></ol>
+    <p class="none" id="none" hidden>No hay modpacks con esos filtros.</p>
+  </main>
 
-        // Filtro de proyectos
-        function filterProjects(category) {
-            const cards = document.querySelectorAll('.project-card');
-            const btns = document.querySelectorAll('.filter-btn');
+  <footer>
+    <p>© <span id="year"></span> KGSMarie. Los logos pertenecen a sus respectivos creadores.</p>
+  </footer>
+</div>
 
-            btns.forEach(b => b.classList.remove('bg-mc-emerald', 'text-black'));
-            btns.forEach(b => b.classList.add('glass-panel', 'text-mc-muted'));
+<script src="modpacks.js"></script>
+<script>
+const el = (t, c, h) => { const e = document.createElement(t); if (c) e.className = c; if (h !== undefined) e.textContent = h; return e; };
+const num = v => typeof v === "number";
 
-            event.target.classList.remove('glass-panel', 'text-mc-muted');
-            event.target.classList.add('bg-mc-emerald', 'text-black');
+// Estilo (se recuerda entre visitas)
+const themeSel = document.getElementById("theme");
+try { const t = localStorage.getItem("theme"); if (t) { document.documentElement.dataset.theme = t; themeSel.value = t; } } catch (e) {}
+themeSel.onchange = () => {
+  document.documentElement.dataset.theme = themeSel.value;
+  try { localStorage.setItem("theme", themeSel.value); } catch (e) {}
+};
 
-            cards.forEach(card => {
-                if (category === 'all' || card.classList.contains(category)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
+// Estadísticas
+const diffs = MODPACKS.filter(m => num(m.difficulty));
+const avg = diffs.length ? (diffs.reduce((s, m) => s + m.difficulty, 0) / diffs.length).toFixed(1) + "/10" : "–";
+const stats = document.getElementById("stats");
+[[MODPACKS.length, "modpacks en hardcore"], [MODPACKS.filter(m => m.result === "ok").length, "completados"],
+ [MODPACKS.reduce((s, m) => s + m.videos.length, 0), "vídeos enlazados"], [avg, "dificultad media"]].forEach(([n, l]) => {
+  const d = el("div"); d.append(el("b", "", n), el("span", "", l)); stats.append(d);
+});
 
-        // Modal de Proyectos
-        function openModal(title, desc) {
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-desc').innerText = desc;
-            document.getElementById('project-modal').classList.remove('hidden');
-        }
+function card(m) {
+  const li = el("li", "item");
+  li.append(el("div", "date", m.dates));
+  const c = el("article", "card");
 
-        function closeModal() {
-            document.getElementById('project-modal').classList.add('hidden');
-        }
+  const logo = el("div", "logo");
+  const img = new Image();
+  img.alt = "Logo de " + m.name; img.loading = "lazy"; img.src = m.logo;
+  img.onerror = () => { logo.textContent = ""; logo.append(el("div", "ph", m.name)); };
+  logo.append(img);
 
-        // Sonido Jukebox
-        function toggleJukebox() {
-            alert('🎵 Sonido reproduciéndose: Minecraft Disc - Pigstep (8-bit synth)');
-        }
-    </script>
+  const body = el("div");
+  const top = el("div", "top");
+  top.append(el("h3", "", m.name), el("span", "badge " + m.result, m.resultText));
+  body.append(top);
+
+  if (num(m.difficulty)) {
+    const diff = el("div", "diff"), h = el("div", "hearts");
+    h.setAttribute("role", "img"); h.setAttribute("aria-label", "Dificultad " + m.difficulty + " de 10");
+    for (let i = 1; i <= 10; i++) h.append(el("i", i <= m.difficulty ? "on" : ""));
+    diff.append(h, el("small", "", "Dificultad " + m.difficulty + "/10" + (num(m.rating) ? " · Mi nota " + m.rating + "/10" : "")));
+    body.append(diff);
+  }
+  body.append(m.opinion ? el("p", "opinion", m.opinion) : el("p", "opinion empty", "Opinión próximamente."));
+
+  const vids = el("div", "videos");
+  m.videos.forEach((v, i) => {
+    const a = el("a", "btn" + (i === 0 ? " main" : ""), "▶ " + v.label);
+    a.href = v.url; a.target = "_blank"; a.rel = "noopener"; vids.append(a);
+  });
+  if (!m.videos.length) {
+    const a = el("a", "btn", "Buscar en el canal");
+    a.href = "https://www.youtube.com/@kgsmarie/search?query=" + encodeURIComponent(m.name); a.target = "_blank"; a.rel = "noopener"; vids.append(a);
+  }
+  if (m.page) { const a = el("a", "btn", "Ver modpack"); a.href = m.page; a.target = "_blank"; a.rel = "noopener"; vids.append(a); }
+  body.append(vids);
+
+  c.append(logo, body); li.append(c);
+  return li;
+}
+
+const list = document.getElementById("list"), none = document.getElementById("none");
+const q = document.getElementById("q"), res = document.getElementById("res"), sortSel = document.getElementById("sort");
+const sorters = {
+  new: (a, b) => b.sort.localeCompare(a.sort),
+  old: (a, b) => a.sort.localeCompare(b.sort),
+  diff: (a, b) => (b.difficulty ?? -1) - (a.difficulty ?? -1),
+  rate: (a, b) => (b.rating ?? -1) - (a.rating ?? -1)
+};
+function render() {
+  const t = q.value.trim().toLowerCase();
+  const items = MODPACKS.filter(m => (!res.value || m.result === res.value) && m.name.toLowerCase().includes(t)).sort(sorters[sortSel.value]);
+  list.textContent = "";
+  items.forEach(m => list.append(card(m)));
+  none.hidden = items.length > 0;
+}
+[q, res, sortSel].forEach(e => e.addEventListener("input", render));
+render();
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
