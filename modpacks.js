@@ -15,31 +15,31 @@ const MODPACKS = [
     opinion: "Honestamente, un sólido 9/10. Me encantaron sus mecánicas y su progresión.",
     note: null,
     videos: [
-      { label: "Parte 1", url: "https://www.youtube.com/watch?v=pUkr2DlZwUY" },
-      { label: "Parte 2", url: "https://www.youtube.com/watch?v=1rMYWOd1hD0" },
-      { label: "Parte 3 (final)", url: "https://www.youtube.com/watch?v=TKFZK-wWne4" }
+      { label: "100 Días", url: "https://www.youtube.com/watch?v=pUkr2DlZwUY" },
+      { label: "200 Días", url: "https://www.youtube.com/watch?v=1rMYWOd1hD0" },
+      { label: "Parte final", url: "https://www.youtube.com/watch?v=TKFZK-wWne4" }
     ],
     page: "https://www.curseforge.com/minecraft/modpacks/beyond-depth"
   },
   {
     name: "All the Mods 10",
     sort: "2026-01-10",
-    dates: "ene 2026 (aprox.)",
+    dates: "1 nov 2025 - 13 mar 2026",
     logo: "img/atm10.png",
     difficulty: 8, rating: null,
     result: "ok", resultText: "Completado",
     opinion: null, note: null,
     videos: [
-      { label: "100 días", url: "https://www.youtube.com/watch?v=..." },
+      { label: "100 días", url: "https://www.youtube.com/watch?v=Oy6ke021oEg" },
       { label: "200 días", url: "https://www.youtube.com/watch?v=RcWCqtOJX7s" },
-      { label: "400 días (Final)", url: "https://www.youtube.com/watch?v=..." }
+      { label: "400 días (Final)", url: "https://www.youtube.com/watch?v=ZMAy-Zk2LkQ" }
     ],
     page: "https://www.curseforge.com/minecraft/modpacks/all-the-mods-10"
   },
   {
     name: "Abyssal Ascent",
     sort: "2026-04-10",
-    dates: "abr 2026",
+    dates: "10 abr 2026",
     logo: "img/abyssal-ascent.png",
     difficulty: 8, rating: 9,
     result: "ok", resultText: "Completado",
@@ -68,6 +68,7 @@ const MODPACKS = [
     difficulty: 8.8, rating: null,
     result: "ok", resultText: "Completado",
     opinion: null, note: null,
+    collab: { name: "@power42", url: "https://www.youtube.com/@danielpower42" },
     videos: [{ label: "100 días", url: "https://www.youtube.com/watch?v=BtuwaJM1cwk" }],
     page: "https://www.curseforge.com/minecraft/modpacks/beyond-ascension"
   },
@@ -91,6 +92,7 @@ const MODPACKS = [
     difficulty: 7.5, rating: null,
     result: "pending", resultText: "Sin completar",
     opinion: null, note: null,
+    collab: { name: "@keinboyfootball", url: "https://www.youtube.com/@keinboyfootball" },
     videos: [{ label: "100 días", url: "https://www.youtube.com/watch?v=iWigwTeSRUo" }],
     page: "https://www.curseforge.com/minecraft/modpacks/ascendra"
   },
