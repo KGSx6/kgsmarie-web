@@ -12,7 +12,7 @@ const MODPACKS = [
     dates: "4 jul 2025 – 12 sep 2025",
     logo: "img/beyond-depth.png",
     difficulty: 9, rating: 9,
-    result: "ok", resultText: "Completado al 100%",
+    result: "ok", resultText: "Completado",
     opinion: "Honestamente, un sólido 9/10. Me encantaron sus mecánicas y su progresión.",
     note: null,
     videos: [
